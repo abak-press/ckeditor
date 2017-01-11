@@ -1,10 +1,10 @@
 # Use this hook to configure ckeditor
-Ckeditor.setup do |config|
+Ckeditor4.setup do |config|
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default), :mongo_mapper and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require "ckeditor/orm/<%= options[:orm] %>"
+  require "ckeditor4/orm/<%= options[:orm] %>"
 
   # Allowed image file types for upload.
   # Set to nil or [] (empty array) for all file types
@@ -21,8 +21,8 @@ Ckeditor.setup do |config|
   # config.authorize_with :cancan
 
   # Asset model classes
-  # config.picture_model { Ckeditor::Picture }
-  # config.attachment_file_model { Ckeditor::AttachmentFile }
+  # config.picture_model { Ckeditor4::Picture }
+  # config.attachment_file_model { Ckeditor4::AttachmentFile }
 
   # Paginate assets
   # By default: 24
@@ -30,7 +30,7 @@ Ckeditor.setup do |config|
 
   # Customize ckeditor assets path
   # By default: nil
-  # config.asset_path = "http://www.example.com/assets/ckeditor/"
+  # config.asset_path = "http://www.example.com/assets/ckeditor4/"
 
   # To reduce the asset precompilation time, you can limit plugins and/or languages to those you need:
   # By default: nil (no limit)

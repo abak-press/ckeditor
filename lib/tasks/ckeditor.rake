@@ -4,7 +4,7 @@ namespace "ckeditor" do
   desc "Create nondigest versions of all ckeditor digest assets"
   task "nondigest" => [:environment] do
     fingerprint = /\-[0-9a-f]{32,64}\./
-    path        = File.join Rails.root.to_s, "public", Ckeditor.base_path, "**/*"
+    path        = File.join Rails.root.to_s, "public", Ckeditor4.base_path, "**/*"
     files       = Dir[path]
 
     for file in files
@@ -21,6 +21,6 @@ end
 # Based on rake task from asset_sync gem
 if Rake::Task.task_defined?("assets:precompile")
   Rake::Task["assets:precompile"].enhance do
-    Rake::Task["ckeditor:nondigest"].invoke if defined?(Ckeditor) && Ckeditor.run_on_precompile?
+    Rake::Task["ckeditor:nondigest"].invoke if defined?(Ckeditor4) && Ckeditor4.run_on_precompile?
   end
 end

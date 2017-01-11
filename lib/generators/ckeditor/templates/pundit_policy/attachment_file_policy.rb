@@ -1,4 +1,4 @@
-class Ckeditor::AttachmentFilePolicy
+class Ckeditor4::AttachmentFilePolicy
   attr_reader :user, :attachment
 
   def initialize(user, attachment)

@@ -21,7 +21,7 @@
 <%= link_to 'New Post', new_post_path %>
 
 <h2>Text area test</h2>
-<%= cktext_area_tag("test_area", "Ckeditor") %>
+<%= ck4_cktext_area_tag("test_area", "Ckeditor4") %>
 
 <h2>Text area test with options</h2>
-<%= cktext_area_tag("content", "Ckeditor", :cols => 10, :rows => 20, :ckeditor => {:toolbar => 'Easy'}) %>
+<%= ck4_cktext_area_tag("content", "Ckeditor4", :cols => 10, :rows => 20, :ckeditor => {:toolbar => 'Easy'}) %>

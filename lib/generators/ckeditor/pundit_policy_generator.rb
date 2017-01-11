@@ -1,6 +1,6 @@
 require 'rails/generators'
 
-module Ckeditor
+module Ckeditor4
   module Generators
     class PunditPolicyGenerator < Rails::Generators::Base
 
@@ -13,7 +13,7 @@ module Ckeditor
       # copy configuration
       def copy_policy_files
         [:picture, :attachment_file].each do |model_name|
-          template "pundit_policy/#{model_name}_policy.rb", "app/policies/ckeditor/#{model_name}_policy.rb"
+          template "pundit_policy/#{model_name}_policy.rb", "app/policies/ckeditor4/#{model_name}_policy.rb"
         end
       end
 

@@ -1,6 +1,6 @@
 # encoding: utf-8
 class CkeditorAttachmentFileUploader < CarrierWave::Uploader::Base
-  include Ckeditor::Backend::CarrierWave
+  include Ckeditor4::Backend::CarrierWave
 
   # Include RMagick or ImageScience support:
   # include CarrierWave::RMagick
@@ -13,7 +13,7 @@ class CkeditorAttachmentFileUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/ckeditor/attachments/#{model.id}"
+    "uploads/ckeditor4/attachments/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -31,6 +31,6 @@ class CkeditorAttachmentFileUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    Ckeditor.attachment_file_types
+    Ckeditor4.attachment_file_types
   end
 end

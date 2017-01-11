@@ -19,7 +19,7 @@ class PostsControllerTest < ActionController::TestCase
   test "pass text_area with options" do
     get :index
 
-    assert_select "textarea#content[name=content][cols=10][rows=20]", "Ckeditor"
+    assert_select "textarea#content[name=content][cols=10][rows=20]", "Ckeditor4"
     assert_select "script", Regexp.new(Regexp.escape(%q!CKEDITOR.replace('content', {"toolbar":"Easy"});!))
   end
 

@@ -8,4 +8,4 @@
 //= require jquery_ujs
 //= require_tree .
 
-//= require ckeditor/init
+//= require ckeditor4/init

@@ -1,4 +1,4 @@
-class Ckeditor::PicturePolicy
+class Ckeditor4::PicturePolicy
   attr_reader :user, :picture
 
   def initialize(user, picture)

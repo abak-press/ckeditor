@@ -19,6 +19,7 @@ platforms :ruby do
   end
 
   group :development, :test do
+    gem 'test-unit'
     gem "capybara", ">= 0.4.0"
     gem "mynyml-redgreen", "~> 0.7.1", :require => 'redgreen'
   end
