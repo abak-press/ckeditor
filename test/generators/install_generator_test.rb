@@ -2,7 +2,7 @@ require "test_helper"
 require "fileutils"
 
 class InstallGeneratorTest < Rails::Generators::TestCase
-  tests Ckeditor::Generators::InstallGenerator
+  tests Ckeditor4::Generators::InstallGenerator
   destination File.expand_path("../../tmp", __FILE__)
   setup :prepare_destination
 
@@ -16,22 +16,22 @@ class InstallGeneratorTest < Rails::Generators::TestCase
   test "Assert all files are properly created" do
     run_generator %w(--orm=active_record)
 
-    assert_file "config/initializers/ckeditor.rb", /require "ckeditor\/orm\/active_record"/
-    assert_file "config/routes.rb", /mount\sCkeditor::Engine\s=\>\s\'\/ckeditor\'/
+    assert_file "config/initializers/ckeditor.rb", /require "ckeditor4\/orm\/active_record"/
+    assert_file "config/routes.rb", /mount\sCkeditor4::Engine\s=\>\s\'\/ckeditor\'/
   end
 
   test "Assert configurator is valid for mongoid" do
     run_generator %w(--orm=mongoid)
 
-    assert_file "config/initializers/ckeditor.rb", /require "ckeditor\/orm\/mongoid"/
+    assert_file "config/initializers/ckeditor.rb", /require "ckeditor4\/orm\/mongoid"/
   end
 
   test "models and migration for active_record orm via paperclip" do
     run_generator %w(--orm=active_record --backend=paperclip)
 
-    assert_file "app/models/ckeditor/asset.rb"
-    assert_file "app/models/ckeditor/picture.rb"
-    assert_file "app/models/ckeditor/attachment_file.rb"
+    assert_file "app/models/ckeditor4/asset.rb"
+    assert_file "app/models/ckeditor4/picture.rb"
+    assert_file "app/models/ckeditor4/attachment_file.rb"
 
     assert_migration "db/migrate/create_ckeditor_assets.rb" do |migration|
       assert_class_method :up, migration do |up|
@@ -43,9 +43,9 @@ class InstallGeneratorTest < Rails::Generators::TestCase
   test "models and migration for active_record orm via carrierwave" do
     run_generator %w(--orm=active_record --backend=carrierwave)
 
-    assert_file "app/models/ckeditor/asset.rb"
-    assert_file "app/models/ckeditor/picture.rb"
-    assert_file "app/models/ckeditor/attachment_file.rb"
+    assert_file "app/models/ckeditor4/asset.rb"
+    assert_file "app/models/ckeditor4/picture.rb"
+    assert_file "app/models/ckeditor4/attachment_file.rb"
 
     assert_file "app/uploaders/ckeditor_attachment_file_uploader.rb"
     assert_file "app/uploaders/ckeditor_picture_uploader.rb"
@@ -60,9 +60,9 @@ class InstallGeneratorTest < Rails::Generators::TestCase
   test "models and migration for active_record orm via dragonfly" do
     run_generator %w(--orm=active_record --backend=dragonfly)
 
-    assert_file "app/models/ckeditor/asset.rb"
-    assert_file "app/models/ckeditor/picture.rb"
-    assert_file "app/models/ckeditor/attachment_file.rb"
+    assert_file "app/models/ckeditor4/asset.rb"
+    assert_file "app/models/ckeditor4/picture.rb"
+    assert_file "app/models/ckeditor4/attachment_file.rb"
 
     assert_migration "db/migrate/create_ckeditor_assets.rb" do |migration|
       assert_class_method :up, migration do |up|
@@ -75,9 +75,9 @@ class InstallGeneratorTest < Rails::Generators::TestCase
   test "models for mongoid orm via paperclip" do
     run_generator %w(--orm=mongoid --backend=paperclip)
 
-    assert_file "app/models/ckeditor/asset.rb"
-    assert_file "app/models/ckeditor/picture.rb"
-    assert_file "app/models/ckeditor/attachment_file.rb"
+    assert_file "app/models/ckeditor4/asset.rb"
+    assert_file "app/models/ckeditor4/picture.rb"
+    assert_file "app/models/ckeditor4/attachment_file.rb"
 
     assert_no_migration "db/migrate/create_ckeditor_assets.rb"
   end
@@ -85,9 +85,9 @@ class InstallGeneratorTest < Rails::Generators::TestCase
   test "models for mongoid orm via carrierwave" do
     run_generator %w(--orm=mongoid --backend=carrierwave)
 
-    assert_file "app/models/ckeditor/asset.rb"
-    assert_file "app/models/ckeditor/picture.rb"
-    assert_file "app/models/ckeditor/attachment_file.rb"
+    assert_file "app/models/ckeditor4/asset.rb"
+    assert_file "app/models/ckeditor4/picture.rb"
+    assert_file "app/models/ckeditor4/attachment_file.rb"
 
     assert_file "app/uploaders/ckeditor_attachment_file_uploader.rb"
     assert_file "app/uploaders/ckeditor_picture_uploader.rb"

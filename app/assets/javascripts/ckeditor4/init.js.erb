@@ -1,0 +1,8 @@
+//= require_self
+//= require ckeditor4/ckeditor
+
+(function() {
+  if (typeof window['CKEDITOR_BASEPATH'] === "undefined" || window['CKEDITOR_BASEPATH'] === null) {
+    window['CKEDITOR_BASEPATH'] = "<%= Ckeditor4.base_path %>";
+  }
+}).call(this);

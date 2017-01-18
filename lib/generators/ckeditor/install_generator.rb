@@ -1,7 +1,7 @@
 require 'rails/generators'
 require 'rails/generators/migration'
 
-module Ckeditor
+module Ckeditor4
   module Generators
     class InstallGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
@@ -33,12 +33,12 @@ module Ckeditor
       end
 
       def mount_engine
-        route "mount Ckeditor::Engine => '/ckeditor'"
+        route "mount Ckeditor4::Engine => '/ckeditor'"
       end
 
       def create_models
         [:asset, :picture, :attachment_file].each do |filename|
-          template "#{generator_dir}/ckeditor/#{filename}.rb",
+          template "#{generator_dir}/ckeditor4/#{filename}.rb",
                    File.join('app/models', ckeditor_dir, "#{filename}.rb")
         end
 
@@ -60,7 +60,7 @@ module Ckeditor
       protected
 
         def ckeditor_dir
-          'ckeditor'
+          'ckeditor4'
         end
 
         def generator_dir

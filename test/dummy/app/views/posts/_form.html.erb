@@ -10,18 +10,18 @@
       </ul>
     </div>
   <% end %>
-  
+
   <%= f.label :title %>
   <%= f.text_field :title %>
 
   <%= f.label :content %>
-  <%= f.cktext_area :content, :ckeditor => { :width => 800, :height => 400 } %>
-  
+  <%= f.ck4_cktext_area :content, :ckeditor => { :width => 800, :height => 400 } %>
+
   <%= f.label :info %>
   <% if @post.new_record? %>
-    <%= cktext_area :post, :info, :value => "Defaults info content", :id => "new_info_content" %>
+    <%= ck4_cktext_area :post, :info, :value => "Defaults info content", :id => "new_info_content" %>
   <% else %>
-    <%= cktext_area :post, :info, :cols => 50, :rows => 70 %>
+    <%= ck4_cktext_area :post, :info, :cols => 50, :rows => 70 %>
   <% end %>
 
   <div class="actions">

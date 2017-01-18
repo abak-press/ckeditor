@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class PicturesControllerTest < ActionController::TestCase
-  tests Ckeditor::PicturesController
+  tests Ckeditor4::PicturesController
 
   include RawPost
-  include Ckeditor::Engine.routes.url_helpers
+  include Ckeditor4::Engine.routes.url_helpers
   include ControllerHooks
 
   def setup
@@ -12,18 +12,18 @@ class PicturesControllerTest < ActionController::TestCase
   end
 
   def teardown
-    Ckeditor::Picture.destroy_all
+    Ckeditor4::Picture.destroy_all
   end
 
   test "index action" do
     get :index
 
     assert_equal 200, @response.status
-    assert_template "ckeditor/pictures/index"
+    assert_template "ckeditor4/pictures/index"
   end
 
   test "create action via filebrowser" do
-    assert_difference 'Ckeditor::Picture.count' do
+    assert_difference 'Ckeditor4::Picture.count' do
       post :create, :qqfile => @image
     end
 
@@ -31,7 +31,7 @@ class PicturesControllerTest < ActionController::TestCase
   end
 
   test "create action via CKEditor upload form" do
-    assert_difference 'Ckeditor::Picture.count' do
+    assert_difference 'Ckeditor4::Picture.count' do
       post :create, :upload => @image, :CKEditor => 'ckeditor_field'
     end
 
@@ -39,7 +39,7 @@ class PicturesControllerTest < ActionController::TestCase
   end
 
   test "create action via html5 upload" do
-    assert_difference 'Ckeditor::Picture.count' do
+    assert_difference 'Ckeditor4::Picture.count' do
       raw_post :create, { :qqfile => @image.original_filename }, @image.read, "image/png"
     end
 
@@ -47,15 +47,15 @@ class PicturesControllerTest < ActionController::TestCase
   end
 
   test "invalid params for create action" do
-    assert_no_difference 'Ckeditor::Picture.count' do
+    assert_no_difference 'Ckeditor4::Picture.count' do
       post :create, :qqfile => nil
     end
   end
 
   test "destroy action via filebrowser" do
-    @picture = Ckeditor::Picture.create :data => @image
+    @picture = Ckeditor4::Picture.create :data => @image
 
-    assert_difference 'Ckeditor::Picture.count', -1 do
+    assert_difference 'Ckeditor4::Picture.count', -1 do
       delete :destroy, :id => @picture.id
     end
 

@@ -57,7 +57,7 @@ task :default => :test
 
 RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'Ckeditor'
+  rdoc.title    = 'Ckeditor4'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')

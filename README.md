@@ -90,17 +90,17 @@ rails generate ckeditor:install --orm=mongoid --backend=carrierwave
 
 #### Load generated models
 
-All ckeditor models will be generated in the app/models/ckeditor directory.
+All ckeditor models will be generated in the app/models/ckeditor4 directory.
 Models are autoloaded in Rails 4. For earlier Rails versions, you need to add them to the autoload path (in application.rb):
 
 ```ruby
-config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+config.autoload_paths += %W(#{config.root}/app/models/ckeditor4)
 ```
 
-Mount the Ckeditor::Engine in your routes (config/routes.rb):
+Mount the Ckeditor4::Engine in your routes (config/routes.rb):
 
 ```ruby
-mount Ckeditor::Engine => '/ckeditor'
+mount Ckeditor4::Engine => '/ckeditor'
 ```
 
 ## Usage
@@ -108,7 +108,7 @@ mount Ckeditor::Engine => '/ckeditor'
 Include ckeditor javascripts in your `app/assets/javascripts/application.js`:
 
 ```
-//= require ckeditor/init
+//= require ckeditor4/init
 ```
 
 Form helpers:
@@ -116,11 +116,11 @@ Form helpers:
 ```erb
 <%= form_for @page do |form| -%>
   ...
-  <%= form.cktext_area :notes, :class => 'someclass', :ckeditor => {:language => 'uk'} %>
+  <%= form.ck4_cktext_area :notes, :class => 'someclass', :ckeditor => {:language => 'uk'} %>
   ...
-  <%= form.cktext_area :content, :value => 'Default value', :id => 'sometext' %>
+  <%= form.ck4_cktext_area :content, :value => 'Default value', :id => 'sometext' %>
   ...
-  <%= cktext_area :page, :info, :cols => 40, :ckeditor => {:uiColor => '#AADC6E', :toolbar => 'mini'} %>
+  <%= ck4_cktext_area :page, :info, :cols => 40, :ckeditor => {:uiColor => '#AADC6E', :toolbar => 'mini'} %>
   ...
 <% end -%>
 ```
@@ -132,9 +132,9 @@ All ckeditor options can be found [here](http://docs.ckeditor.com/#!/api/CKEDITO
 In order to configure the ckeditor default options, create the following files:
 
 ```
-app/assets/javascripts/ckeditor/config.js
+app/assets/javascripts/ckeditor4/config.js
 
-app/assets/javascripts/ckeditor/contents.css
+app/assets/javascripts/ckeditor4/contents.css
 ```
 
 #### Custom toolbars example
@@ -142,11 +142,11 @@ app/assets/javascripts/ckeditor/contents.css
 Adding a custom toolbar:
 
 ```javascript
-# in app/assets/javascripts/ckeditor/config.js
+# in app/assets/javascripts/ckeditor4/config.js
 
 CKEDITOR.editorConfig = function (config) {
   // ... other configuration ...
-  
+
   config.toolbar_mini = [
     ["Bold",  "Italic",  "Underline",  "Strike",  "-",  "Subscript",  "Superscript"],
   ];
@@ -156,14 +156,14 @@ CKEDITOR.editorConfig = function (config) {
 }
 ```
 
-When overriding the default `config.js` file, you must set all configuration options yourself as the bundled `config.js` will not be loaded. To see the default configuration, run `bundle open ckeditor`, copy `app/assets/javascripts/ckeditor/config.js` into your project and customize it to your needs.
+When overriding the default `config.js` file, you must set all configuration options yourself as the bundled `config.js` will not be loaded. To see the default configuration, run `bundle open ckeditor`, copy `app/assets/javascripts/ckeditor4/config.js` into your project and customize it to your needs.
 
 ### Deployment
 
 For Rails 4, add the following to `config/initializers/assets.rb`:
 
 ```ruby
-Rails.application.config.assets.precompile += %w( ckeditor/* )
+Rails.application.config.assets.precompile += %w( ckeditor4/* )
 ```
 
 As of version 4.1.0, non-digested assets of Ckeditor will simply be copied after digested assets were compiled.
@@ -174,7 +174,7 @@ To reduce the asset precompilation time, you can limit plugins and/or languages 
 ```ruby
 # in config/initializers/ckeditor.rb
 
-Ckeditor.setup do |config|
+Ckeditor4.setup do |config|
   config.assets_languages = ['en', 'fr']
   config.assets_plugins = ['image', 'smiley']
 end
@@ -184,7 +184,7 @@ Note that you have to list your plugins, including all their dependencies.
 
 ### Include customized CKEDITOR_BASEPATH setting
 
-Add your app/assets/javascripts/ckeditor/basepath.js.erb like
+Add your app/assets/javascripts/ckeditor4/basepath.js.erb like
 
 ```erb
 <%
@@ -193,7 +193,7 @@ Add your app/assets/javascripts/ckeditor/basepath.js.erb like
     base_path << "/#{Rails.root.basename.to_s}/"
   end
   base_path << Rails.application.config.assets.prefix
-  base_path << '/ckeditor/'
+  base_path << '/ckeditor4/'
 %>
 var CKEDITOR_BASEPATH = '<%= base_path %>';
 ```
@@ -234,7 +234,7 @@ To use cancan with Ckeditor, add this to an initializer:
 ```ruby
 # in config/initializers/ckeditor.rb
 
-Ckeditor.setup do |config|
+Ckeditor4.setup do |config|
   config.authorize_with :cancan
 end
 ```
@@ -247,8 +247,8 @@ To grant access, add this to Ability#initialize:
 can :access, :ckeditor   # needed to access Ckeditor filebrowser
 
 # Performed checks for actions:
-can [:read, :create, :destroy], Ckeditor::Picture
-can [:read, :create, :destroy], Ckeditor::AttachmentFile
+can [:read, :create, :destroy], Ckeditor4::Picture
+can [:read, :create, :destroy], Ckeditor4::AttachmentFile
 ```
 
 ### Pundit integration
@@ -256,7 +256,7 @@ can [:read, :create, :destroy], Ckeditor::AttachmentFile
 Just like CanCan, you can write this code in your config/initializers/ckeditor.rb file:
 
 ```ruby
-Ckeditor.setup do |config|
+Ckeditor4.setup do |config|
   config.authorize_with :pundit
 end
 ```
@@ -267,8 +267,8 @@ Then, generate the policy files for model **Picture** and **AttachmentFile**
 $ rails g ckeditor:pundit_policy
 ```
 By this command, you will got two files:
-> app/policies/ckeditor/picture_policy.rb
-app/policies/ckeditor/attachment_file_policy.rb
+> app/policies/ckeditor4/picture_policy.rb
+app/policies/ckeditor4/attachment_file_policy.rb
 
 By default, only the user that logged in can access the models (with actions *index* and *create*) and only the owner of the asset can **destroy** the resource.
 

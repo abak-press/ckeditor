@@ -14,7 +14,7 @@ Dragonfly.app(:ckeditor).configure do
 
   # Accept asset requests on /ckeditor_assets. Again, this path is
   # not mandatory. Just be sure to include :job somewhere.
-  url_format "/uploads/ckeditor/:job/:basename.:format"
+  url_format "/uploads/ckeditor4/:job/:basename.:format"
 end
 
 Rails.application.middleware.use Dragonfly::Middleware, :ckeditor

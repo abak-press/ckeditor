@@ -10,7 +10,7 @@ if defined?(Bundler)
   Bundler.require(:default, CKEDITOR_ORM)
 end
 
-require 'ckeditor'
+require 'ckeditor4'
 
 module Dummy
   class Application < Rails::Application
