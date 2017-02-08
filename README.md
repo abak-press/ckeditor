@@ -132,9 +132,9 @@ All ckeditor options can be found [here](http://docs.ckeditor.com/#!/api/CKEDITO
 In order to configure the ckeditor default options, create the following files:
 
 ```
-app/assets/javascripts/ckeditor4/config.js
+app/assets/javascripts/ckeditor_4/config.js
 
-app/assets/javascripts/ckeditor4/contents.css
+app/assets/javascripts/ckeditor_4/contents.css
 ```
 
 #### Custom toolbars example
@@ -142,9 +142,9 @@ app/assets/javascripts/ckeditor4/contents.css
 Adding a custom toolbar:
 
 ```javascript
-# in app/assets/javascripts/ckeditor4/config.js
+# in app/assets/javascripts/ckeditor_4/config.js
 
-CKEDITOR.editorConfig = function (config) {
+CKEDITOR4.editorConfig = function (config) {
   // ... other configuration ...
 
   config.toolbar_mini = [
