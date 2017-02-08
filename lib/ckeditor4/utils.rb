@@ -21,13 +21,13 @@ module Ckeditor4
       end
 
       def js_replace(dom_id, options = nil)
-        js = ["(function() { if (typeof CKEDITOR != 'undefined') {"]
+        js = ["(function() { if (typeof CKEDITOR4 != 'undefined') {"]
 
         if options && !options.keys.empty?
           js_options = ActiveSupport::JSON.encode(options)
-          js << "if (CKEDITOR.instances['#{dom_id}'] == undefined) { CKEDITOR.replace('#{dom_id}', #{js_options}); }"
+          js << "if (CKEDITOR4.instances['#{dom_id}'] == undefined) { CKEDITOR4.replace('#{dom_id}', #{js_options}); }"
         else
-          js << "if (CKEDITOR.instances['#{dom_id}'] == undefined) { CKEDITOR.replace('#{dom_id}'); }"
+          js << "if (CKEDITOR4.instances['#{dom_id}'] == undefined) { CKEDITOR4.replace('#{dom_id}'); }"
         end
 
         js << "} else { setTimeout(arguments.callee, 50); } })();"
@@ -58,7 +58,7 @@ module Ckeditor4
       def filethumb(filename)
         extname = filename.blank? ? "unknown" : File.extname(filename).gsub(/^\./, '')
         image = "#{extname}.gif"
-        source = Ckeditor4.root_path.join("app/assets/javascripts/ckeditor4/filebrowser/images/thumbs")
+        source = Ckeditor4.root_path.join("app/assets/javascripts/ckeditor_4/filebrowser/images/thumbs")
 
         unless File.exists?(File.join(source, image))
           image = "unknown.gif"

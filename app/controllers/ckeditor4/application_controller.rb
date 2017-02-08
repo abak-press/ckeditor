@@ -18,7 +18,7 @@ class Ckeditor4::ApplicationController < ApplicationController
           render :json => asset.to_json(:only=>[:id, :type])
         else
           render :text => %Q"<script type='text/javascript'>
-              window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, '#{config.relative_url_root}#{Ckeditor4::Utils.escape_single_quotes(asset.url_content)}');
+              window.parent.CKEDITOR4.tools.callFunction(#{params[:CKEditorFuncNum]}, '#{config.relative_url_root}#{Ckeditor4::Utils.escape_single_quotes(asset.url_content)}');
             </script>"
         end
       else
@@ -26,7 +26,7 @@ class Ckeditor4::ApplicationController < ApplicationController
           render :nothing => true, :format => :json
         else
           render :text => %Q"<script type='text/javascript'>
-              window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, null, '#{Ckeditor4::Utils.escape_single_quotes(asset.errors.full_messages.first)}');
+              window.parent.CKEDITOR4.tools.callFunction(#{params[:CKEditorFuncNum]}, null, '#{Ckeditor4::Utils.escape_single_quotes(asset.errors.full_messages.first)}');
             </script>"
         end
       end
